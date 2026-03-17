@@ -10,6 +10,9 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-inter: var(--font-inter);
+  --color-primary-color: #e16e09;
+  --color-dark: #2c1c11;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,7 +23,14 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: #2c1c11;
+  font-family: var(--font-inter);
+}
+
+.container {
+  @apply max-w-170 w-full px-5 sm:px-12 mx-auto;
+}
+button {
+  cursor: pointer;
 }
