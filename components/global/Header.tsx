@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Header() {
   return (
-    <header className="py-2.5 md:pt-5 shadow-md">
+    <header className="py-2.5 md:pt-5 shadow-md sticky top-0 w-full bg-white z-20">
       <div className="container">
         <div className="p-2.5">
           <Image src={logo} alt="" className="w-25 md:w-50 mx-auto" />

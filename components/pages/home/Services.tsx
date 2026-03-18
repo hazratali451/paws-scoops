@@ -1,18 +1,28 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
-import grass from "../../../public/assets/icons/grass.webp";
-import turf from "../../../public/assets/icons/turf.webp";
+import React from "react";
 import ServiceSwitch, { ServiceItem } from "./ServiceSwitch";
 
-export default function Services() {
-  const [selected, setSelected] = useState<string[]>([]);
-
+// icon
+import cleanUp from "../../../public/assets/icons/clean-up.svg";
+import sanitize from "../../../public/assets/icons/sanitizing.svg";
+import deodorization from "../../../public/assets/icons/deodorization.svg";
+import deterrent from "../../../public/assets/icons/deterrent.svg";
+import trash from "../../../public/assets/icons/trash.svg";
+import SmallHeading from "@/components/common/SmallHeading";
+interface ServicesProps {
+  selectedService: string[];
+  setSelectedService: React.Dispatch<React.SetStateAction<string[]>>;
+}
+export default function Services({
+  selectedService,
+  setSelectedService,
+}: ServicesProps) {
   const MAGIC_ID = "5";
 
   const handleSelect = (id: string) => {
-    setSelected((prev) => {
+    setSelectedService((prev) => {
       // If Magic Bucket clicked
       if (id === MAGIC_ID) {
         // toggle magic only
@@ -31,50 +41,48 @@ export default function Services() {
       }
     });
   };
-  const isMagicSelected = selected.includes(MAGIC_ID);
+  const isMagicSelected = selectedService.includes(MAGIC_ID);
 
   const options: ServiceItem[] = [
     {
       id: "1",
       label: "Poop scoop and haul away",
       des: "Essential clean-up service.",
-      icon: <Image className="w-full" alt="" src={grass} />,
+      icon: <Image className="w-full" alt="" src={cleanUp} />,
     },
     {
       id: "2",
       label: "Backyard Sanitizing",
       des: "Sanitize the serviced area.",
-      icon: <Image className="w-full" alt="" src={turf} />,
+      icon: <Image className="w-full" alt="" src={sanitize} />,
     },
     {
       id: "3",
       label: "Backyard Deodorization",
       des: "Help neutralize odors.",
-      icon: <Image className="w-full" alt="" src={grass} />,
+      icon: <Image className="w-full" alt="" src={deodorization} />,
     },
     {
       id: "4",
       label: "Front Lawn Dog Deterrent",
       des: "Optional deterrent for front lawn.",
-      icon: <Image className="w-full" alt="" src={turf} />,
+      icon: <Image className="w-full" alt="" src={deterrent} />,
     },
     {
       id: "5",
       label: "Magic Bucket",
       des: "We scoop the poop and put the waste in the bucket we set out. Weekly we clean the bucket, replace the bags inside, and take the waste with us.",
-      icon: <Image className="w-full" alt="" src={grass} />,
+      icon: <Image className="w-full" alt="" src={trash} />,
     },
   ];
 
   return (
     <div className="flex flex-col gap-3">
-      <h6 className="text-dark font-bold leading-[155%] text-[15px]">
-        Services
-      </h6>
+      <SmallHeading>Services</SmallHeading>
 
       <div className="flex flex-col gap-3 pt-1">
         {options.map((item) => {
-          const isActive = selected.includes(item.id as string);
+          const isActive = selectedService.includes(item.id as string);
           const disabled = isMagicSelected && item.id !== MAGIC_ID;
           return (
             <ServiceSwitch

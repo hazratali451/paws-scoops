@@ -30,7 +30,7 @@ export default function ServiceSwitch({
       type="button"
       disabled={disabled}
       onClick={() => handleSelect(item.id)}
-      className={`border rounded-xl transition-all ease-linear duration-300 w-full disabled:opacity-80! disabled:border-[#E7DFDA]! disabled:shadow-none! disabled:cursor-not-allowed!
+      className={`border rounded-xl transition-all ease-linear duration-300 w-full disabled:opacity-50! disabled:border-[#E7DFDA]! disabled:shadow-none! disabled:cursor-not-allowed!
         ${
           isActive
             ? "border-primary-color shadow-[0_18px_40px_-26px_#E16E0999] bg-[linear-gradient(180deg,#E16E0999_0%,#F4F1EE_100%)]"

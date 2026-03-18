@@ -2,6 +2,7 @@
 
 import Header from "@/components/global/Header";
 import ChooseSurface from "@/components/pages/home/ChooseSurface";
+import ContactInformation from "@/components/pages/home/ContactInformation";
 import PickDogsNumber from "@/components/pages/home/PickDogsNumber";
 import PickService from "@/components/pages/home/PickService";
 import SelectVisitingTime from "@/components/pages/home/SelectVisitingTime";
@@ -36,6 +37,12 @@ export default function Home() {
                 <PickService
                   onNext={() => setStep(5)}
                   onBack={() => setStep(3)}
+                />
+              </div>
+              <div className={`${step === 5 ? "block" : "hidden"}`}>
+                <ContactInformation
+                  // onNext={() => setStep(5)}
+                  onBack={() => setStep(1)}
                 />
               </div>
             </div>

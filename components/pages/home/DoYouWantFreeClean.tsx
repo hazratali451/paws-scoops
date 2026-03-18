@@ -1,38 +1,41 @@
 "use client";
 import { OptionItem } from "@/components/common/SelectStep";
 import Image from "next/image";
-import React, { useState } from "react";
-import grass from "../../../public/assets/icons/grass.webp";
-import turf from "../../../public/assets/icons/turf.webp";
+import React from "react";
+import check from "../../../public/assets/icons/check-mark.svg";
+import cross from "../../../public/assets/icons/cross-mark.svg";
 import PickBox, { PickBoxItem } from "@/components/common/PickBox";
+import SmallHeading from "@/components/common/SmallHeading";
 
-export default function DoYouWantFreeClean() {
-  const [selected, setSelected] = useState<string | undefined>("");
-
+export default function DoYouWantFreeClean({
+  freeCleaning,
+  setFreeCleaning,
+}: {
+  freeCleaning: string;
+  setFreeCleaning: React.Dispatch<React.SetStateAction<string>>;
+}) {
   const handleSelect = (id: string) => {
-    setSelected(id);
+    setFreeCleaning(id);
   };
   const options: OptionItem[] = [
     {
       id: "1",
       label: "Yes",
-      icon: <Image className="w-full" alt="" src={grass} />,
+      icon: <Image className="w-full" alt="" src={check} />,
     },
     {
       id: "2",
       label: "No",
-      icon: <Image className="w-full" alt="" src={turf} />,
+      icon: <Image className="w-full" alt="" src={cross} />,
     },
   ];
 
   return (
     <div className="flex flex-col gap-3">
-      <h6 className="text-dark font-bold leading-[155%] text-[15px]">
-        Do you want the free cleaning?
-      </h6>
+      <SmallHeading>Do you want the free cleaning?</SmallHeading>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
         {options.map((item) => {
-          const isActive = selected === item.id;
+          const isActive = freeCleaning === item.id;
 
           return (
             <PickBox
