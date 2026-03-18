@@ -1,5 +1,7 @@
 import StepLayout from "@/components/common/StepLayout";
 import React, { useState } from "react";
+import DoYouWantFreeClean from "./DoYouWantFreeClean";
+import Services from "./Services";
 
 export default function PickService({
   onNext,
@@ -17,6 +19,8 @@ export default function PickService({
       description="Pick your preferred services."
       step={4}
     >
+      <Services />
+      <DoYouWantFreeClean />
       {/* Actions */}
       <div className="flex gap-2 mt-8">
         <button

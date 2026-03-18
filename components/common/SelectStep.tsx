@@ -2,12 +2,14 @@
 
 import React, { useState } from "react";
 import StepLayout from "./StepLayout";
+import PickBox, { PickBoxItem } from "./PickBox";
 
 export interface OptionItem {
   id: string;
   label: string;
   icon: React.ReactNode;
   type?: string;
+  des?: string;
 }
 
 interface SelectStepProps {
@@ -65,29 +67,12 @@ const SelectStep: React.FC<SelectStepProps> = ({
           const isActive = selected === item.id;
 
           return (
-            <button
+            <PickBox
+              isActive={isActive}
               key={item.id}
-              onClick={() => handleSelect(item.id)}
-              className={`border rounded-xl transition-all ease-linear duration-300 hover:-translate-y-0.5 
-                ${
-                  isActive
-                    ? "border-primary-color shadow-[0_18px_40px_-26px_#E16E0999] bg-[linear-gradient(180deg,#E16E0999_0%,#F4F1EE_100%)] "
-                    : "border-[#E7DFDA] hover:border-primary-color hover:shadow-[0_18px_40px_-26px_#E16E0999] "
-                }`}
-            >
-              <div className="bg-white/95 flex flex-col gap-3 items-center w-full h-full rounded-[11px] p-4">
-                <div
-                  className={`border border-[#E7DFDA] bg-white  rounded-lg size-14 flex justify-center items-center overflow-hidden ${item.type === "img" ? "" : "p-1.5"}`}
-                  style={{ boxShadow: "0 4px 14px -10px rgba(0, 0, 0, 0.25)" }}
-                >
-                  {item.icon}
-                </div>
-
-                <span className="text-[15px] font-semibold leading-[150%]">
-                  {item.label}
-                </span>
-              </div>
-            </button>
+              item={item as PickBoxItem}
+              handleSelect={() => handleSelect(item.id)}
+            />
           );
         })}
       </div>
