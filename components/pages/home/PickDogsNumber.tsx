@@ -21,22 +21,22 @@ export default function PickDogsNumber({
     {
       id: "1",
       label: "1 Dog",
-      icon: <Image className="w-full" alt="" src={dog1} />,
+      icon: <Image className="w-full" alt="" priority src={dog1} />,
     },
     {
       id: "2-3",
       label: "2-3 Dogs",
-      icon: <Image className="w-full" alt="" src={dogs2} />,
+      icon: <Image className="w-full" alt="" priority src={dogs2} />,
     },
     {
       id: "4-5",
       label: "4-5 Dogs",
-      icon: <Image className="w-full" alt="" src={dogs4} />,
+      icon: <Image className="w-full" alt="" priority src={dogs4} />,
     },
     {
       id: "6+",
       label: "6+ Dogs",
-      icon: <Image className="w-full" alt="" src={dogs6} />,
+      icon: <Image className="w-full" alt="" priority src={dogs6} />,
     },
   ];
 

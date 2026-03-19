@@ -22,27 +22,27 @@ export default function SelectVisitingTime({
     {
       id: "1",
       label: "Twice Weekly",
-      icon: <Image className="w-full" alt="" src={twiceWeekly} />,
+      icon: <Image className="w-full" alt="" priority src={twiceWeekly} />,
     },
     {
       id: "2",
       label: "Weekly",
-      icon: <Image className="w-full" alt="" src={weekly} />,
+      icon: <Image className="w-full" alt="" priority src={weekly} />,
     },
     {
       id: "3",
       label: "Bi-Weekly",
-      icon: <Image className="w-full" alt="" src={biWeekly} />,
+      icon: <Image className="w-full" alt="" priority src={biWeekly} />,
     },
     {
       id: "4",
       label: "Monthly",
-      icon: <Image className="w-full" alt="" src={monthly} />,
+      icon: <Image className="w-full" alt="" priority src={monthly} />,
     },
     {
       id: "5",
       label: "One Time",
-      icon: <Image className="w-full" alt="" src={oneTime} />,
+      icon: <Image className="w-full" alt="" priority src={oneTime} />,
     },
   ];
 

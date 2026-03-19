@@ -21,12 +21,12 @@ export default function DoYouWantFreeClean({
     {
       id: "1",
       label: "Yes",
-      icon: <Image className="w-full" alt="" src={check} />,
+      icon: <Image className="w-full" alt="" priority src={check} />,
     },
     {
       id: "2",
       label: "No",
-      icon: <Image className="w-full" alt="" src={cross} />,
+      icon: <Image className="w-full" alt="" priority src={cross} />,
     },
   ];
 

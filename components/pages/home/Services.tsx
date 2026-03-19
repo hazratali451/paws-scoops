@@ -48,31 +48,31 @@ export default function Services({
       id: "1",
       label: "Poop scoop and haul away",
       des: "Essential clean-up service.",
-      icon: <Image className="w-full" alt="" src={cleanUp} />,
+      icon: <Image className="w-full" alt="" priority src={cleanUp} />,
     },
     {
       id: "2",
       label: "Backyard Sanitizing",
       des: "Sanitize the serviced area.",
-      icon: <Image className="w-full" alt="" src={sanitize} />,
+      icon: <Image className="w-full" alt="" priority src={sanitize} />,
     },
     {
       id: "3",
       label: "Backyard Deodorization",
       des: "Help neutralize odors.",
-      icon: <Image className="w-full" alt="" src={deodorization} />,
+      icon: <Image className="w-full" alt="" priority src={deodorization} />,
     },
     {
       id: "4",
       label: "Front Lawn Dog Deterrent",
       des: "Optional deterrent for front lawn.",
-      icon: <Image className="w-full" alt="" src={deterrent} />,
+      icon: <Image className="w-full" alt="" priority src={deterrent} />,
     },
     {
       id: "5",
       label: "Magic Bucket",
       des: "We scoop the poop and put the waste in the bucket we set out. Weekly we clean the bucket, replace the bags inside, and take the waste with us.",
-      icon: <Image className="w-full" alt="" src={trash} />,
+      icon: <Image className="w-full" alt="" priority src={trash} />,
     },
   ];
 

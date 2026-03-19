@@ -21,25 +21,25 @@ export default function ChooseSurface({
     {
       id: "1",
       label: "Grass",
-      icon: <Image className="w-full" alt="" src={grass} />,
+      icon: <Image className="w-full" alt="" priority src={grass} />,
       type: "img",
     },
     {
       id: "2",
       label: "Turf",
-      icon: <Image className="w-full" alt="" src={turf} />,
+      icon: <Image className="w-full" alt="" priority src={turf} />,
       type: "img",
     },
     {
       id: "3",
       label: "Rocks",
-      icon: <Image className="w-full" alt="" src={rocks} />,
+      icon: <Image className="w-full" alt="" priority src={rocks} />,
       type: "img",
     },
     {
       id: "4",
       label: "Dirt",
-      icon: <Image className="w-full" alt="" src={dirt} />,
+      icon: <Image className="w-full" alt="" priority src={dirt} />,
       type: "img",
     },
   ];
