@@ -25,7 +25,11 @@ export default function StepLayout({
             </span>
           )}
         </div>
-        {description && <p className="text-[#8F7C70]">{description}</p>}
+        {description && (
+          <p className="text-[#8F7C70] text-base leading-[120%]">
+            {description}
+          </p>
+        )}
       </div>
 
       {children}

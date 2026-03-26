@@ -3,6 +3,7 @@
 import InputField from "@/components/common/InputField";
 import SelectField from "@/components/common/SelectField";
 import StepLayout from "@/components/common/StepLayout";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 interface ContactProps {
@@ -12,14 +13,25 @@ interface ContactProps {
 }
 
 export default function ContactInformation({ onNext, onBack }: ContactProps) {
+  const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [hearFrom, setHearFrom] = useState("");
-
-  // disable if required fields empty
+  const [loading, setLoading] = useState(false); // disable if required fields empty
   const isDisabled = !name || !email || !phone || !address || !hearFrom;
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (isDisabled || loading) return;
+    setLoading(true);
+    // optional callback
+    if (onNext) onNext();
+    setTimeout(() => {
+      setLoading(false);
+      router.push("/v");
+    }, 3000);
+  };
 
   return (
     <StepLayout
@@ -27,7 +39,7 @@ export default function ContactInformation({ onNext, onBack }: ContactProps) {
       description="Share the best way to reach you. We’ll show your instant quote next."
       step={5}
     >
-      <form className="flex flex-col gap-4">
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <InputField
           label="Full name"
           placeholder="Jane Doe"
@@ -93,16 +105,11 @@ export default function ContactInformation({ onNext, onBack }: ContactProps) {
         {/* Submit */}
         <div className="pt-2 flex flex-col gap-2">
           <button
-            onClick={onNext}
-            disabled={isDisabled}
-            className={`flex-1 py-3.5 font-semibold text-sm rounded-[0.65rem] text-white border border-[#E16E09] w-full 
-          ${
-            isDisabled
-              ? "bg-[#F6831E]/50 cursor-not-allowed opacity-60"
-              : "bg-[#F6831E]/85 cursor-pointer"
-          }`}
+            type="submit"
+            disabled={isDisabled || loading}
+            className={`flex-1 py-3.5 font-semibold text-sm rounded-[0.65rem] text-white border border-[#E16E09] w-full ${isDisabled || loading ? "bg-[#F6831E]/50 cursor-not-allowed opacity-60" : "bg-[#F6831E]/85 cursor-pointer"}`}
           >
-            See my instant quote
+            {loading ? "Loading..." : "See my instant quote"}{" "}
           </button>
 
           <p className="text-[#8f7c70] text-xs font-normal leading-[158%]">
