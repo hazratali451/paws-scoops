@@ -42,14 +42,14 @@ const CheckoutSummary: React.FC = () => {
     <>
       {/* Order Summary Card */}
       <div className="border border-[#E7DFDA] p-3.5 sm:p-5 rounded-[0.6rem] bg-linear-to-t from-[#FFFFFF] to-[#F5F2EF]  shadow-[0_12px_28px_-24px_rgba(226,88,7,0.55)]">
-        <div className="flex justify-between sm:items-center max-sm:flex-col pb-3.5 gap-1 border-b border-[#E7DFDA]">
+        {/* <div className="flex justify-between sm:items-center max-sm:flex-col pb-3.5 gap-1 border-b border-[#E7DFDA]">
           <h2 className="text-[#8f7c70] text-[12.8px] uppercase leading-[150%]">
             Estimated Total
           </h2>
           <span className="text-[#E16e09] text-3xl  font-extrabold leading-[155%]">
             $135
           </span>
-        </div>
+        </div> */}
 
         <div className="flex flex-col">
           {orderSummary.map((item, index) => (

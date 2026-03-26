@@ -69,7 +69,7 @@ export default function ContactInformation({ onNext, onBack }: ContactProps) {
         <SelectField
           label="How did you hear about us?"
           value={hearFrom}
-          onChange={(e) => setHearFrom(e.target.value)}
+          onChange={(val) => setHearFrom(val)}
           options={[
             { label: "Facebook", value: "fb" },
             { label: "Google", value: "google" },
