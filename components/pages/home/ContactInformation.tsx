@@ -107,7 +107,7 @@ export default function ContactInformation({ onNext, onBack }: ContactProps) {
           <button
             type="submit"
             disabled={isDisabled || loading}
-            className={`flex-1 py-3.5 font-semibold text-sm rounded-[0.65rem] text-white border border-[#E16E09] w-full ${isDisabled || loading ? "bg-[#F6831E]/50 cursor-not-allowed opacity-60" : "bg-[#F6831E]/85 cursor-pointer"}`}
+            className={`flex-1 py-3.5 font-semibold text-sm rounded-[0.65rem] text-white border border-primary-color w-full ${isDisabled || loading ? "bg-primary-color/50 cursor-not-allowed opacity-60" : "bg-primary-color/85 cursor-pointer"}`}
           >
             {loading ? "Loading..." : "See my instant quote"}
           </button>

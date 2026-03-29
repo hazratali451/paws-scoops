@@ -11,7 +11,7 @@ interface SwitchProps {
 const Switch: React.FC<SwitchProps> = ({
   checked = false,
   onChange,
-  activeColor = "#e16e09",
+  activeColor = "#429EBC",
 }) => {
   const toggleSwitch = () => {
     onChange?.(!checked);

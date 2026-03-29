@@ -25,8 +25,8 @@ export default function PickBox({
       className={`border rounded-xl transition-all ease-linear duration-300 hover:-translate-y-0.5 w-full
         ${
           isActive
-            ? "border-primary-color shadow-[0_18px_40px_-26px_#E16E0999] bg-[linear-gradient(180deg,#E16E0999_0%,#F4F1EE_100%)]"
-            : "border-[#E7DFDA] hover:border-primary-color hover:shadow-[0_18px_40px_-26px_#E16E0999]"
+            ? "border-primary-color shadow-[0_18px_40px_-26px_#429EBC99] bg-[linear-gradient(180deg,#429EBC99_0%,#F4F1EE_100%)]"
+            : "border-[#E7DFDA] hover:border-primary-color hover:shadow-[0_18px_40px_-26px_#429EBC99]"
         }`}
     >
       <div className="bg-white/95 flex flex-col gap-3 items-center w-full h-full rounded-[11px] p-4">

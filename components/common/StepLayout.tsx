@@ -20,7 +20,7 @@ export default function StepLayout({
             {title}
           </h2>
           {step && (
-            <span className="text-[11px] font-semibold leading-[155%] bg-[#e16e0924] text-primary-color px-3 flex items-center rounded-full uppercase py-1">
+            <span className="text-[11px] font-semibold leading-[155%] bg-[#429EBC24] text-primary-color px-3 flex items-center rounded-full uppercase py-1">
               STEP {step} OF 5
             </span>
           )}

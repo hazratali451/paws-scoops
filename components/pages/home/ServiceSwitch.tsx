@@ -33,8 +33,8 @@ export default function ServiceSwitch({
       className={`border rounded-xl transition-all ease-linear duration-300 w-full disabled:opacity-50! disabled:border-[#E7DFDA]! disabled:shadow-none! disabled:cursor-not-allowed!
         ${
           isActive
-            ? "border-primary-color shadow-[0_18px_40px_-26px_#E16E0999] bg-[linear-gradient(180deg,#E16E0999_0%,#F4F1EE_100%)]"
-            : "border-[#E7DFDA] hover:border-primary-color hover:shadow-[0_18px_40px_-26px_#E16E0999]"
+            ? "border-primary-color shadow-[0_18px_40px_-26px_#429EBC99] bg-[linear-gradient(180deg,#429EBC99_0%,#F4F1EE_100%)]"
+            : "border-[#E7DFDA] hover:border-primary-color hover:shadow-[0_18px_40px_-26px_#429EBC99]"
         }`}
     >
       <div className="bg-white/95 flex gap-3.5 items-center w-full h-full rounded-[11px] p-3 ">

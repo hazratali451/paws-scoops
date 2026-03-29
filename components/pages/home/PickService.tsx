@@ -44,11 +44,11 @@ export default function PickService({ onNext, onBack }: PickServiceProps) {
         <button
           onClick={onNext}
           disabled={isDisabled}
-          className={`flex-1 py-3.5 font-semibold text-sm rounded-[0.65rem] text-white border border-[#E16E09] 
+          className={`flex-1 py-3.5 font-semibold text-sm rounded-[0.65rem] text-white border border-primary-color
           ${
             isDisabled
-              ? "bg-[#F6831E]/50 cursor-not-allowed! opacity-60"
-              : "bg-[#F6831E]/85 cursor-pointer"
+              ? "bg-[#429EBC]/50 cursor-not-allowed! opacity-60"
+              : "bg-[#429EBC]/85 cursor-pointer"
           }`}
         >
           Review

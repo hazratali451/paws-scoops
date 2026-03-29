@@ -21,7 +21,7 @@ export default function vPage() {
             <h2 className="text-[21.6px] leading-[120%] text-dark font-bold">
               Your instant quote
             </h2>
-            <span className="text-[11px] font-semibold leading-[155%] bg-[#e16e0924] text-primary-color px-3 flex items-center rounded-full uppercase py-1">
+            <span className="text-[11px] font-semibold leading-[155%] bg-[#429EBC24] text-primary-color px-3 flex items-center rounded-full uppercase py-1">
               Summary
             </span>
           </div>

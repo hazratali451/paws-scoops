@@ -89,7 +89,7 @@ const SelectStep: React.FC<SelectStepProps> = ({
         <button
           onClick={onNext}
           disabled={!selected}
-          className={`text-white  flex-1 py-3.5 font-semibold text-sm rounded-[0.65rem] bg-[#F6831E]/85 border border-[#E16E09] ${!selected ? "cursor-not-allowed! opacity-60" : "cursor-pointer"}`}
+          className={`text-white  flex-1 py-3.5 font-semibold text-sm rounded-[0.65rem] bg-[#429EBC]/85 border border-[#429EBC] ${!selected ? "cursor-not-allowed! opacity-60" : "cursor-pointer"}`}
         >
           Next
         </button>
