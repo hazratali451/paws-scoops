@@ -10,7 +10,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-inter: var(--font-inter);
+
   --color-primary-color: #53aec6;
   --color-dark: #2c1c11;
 }
@@ -25,7 +25,7 @@
 body {
   background: #ffffff;
   color: #2c1c11;
-  font-family: var(--font-inter);
+  font-family: var(--font-lato), sans-serif;
 }
 
 .container {
