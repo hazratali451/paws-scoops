@@ -2,10 +2,10 @@
 
 import Header from "@/components/global/Header";
 import CheckoutSummary from "@/components/pages/result/CheckoutSummary";
-import React from "react";
+import React, { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
-export default function VPage() {
+function VPageContent() {
   const searchParams = useSearchParams();
   const name = searchParams.get("name") || "";
   const firstName = name.split(" ")[0];
@@ -58,5 +58,13 @@ export default function VPage() {
         </div>
       </section>
     </main>
+  );
+}
+
+export default function VPage() {
+  return (
+    <Suspense>
+      <VPageContent />
+    </Suspense>
   );
 }
