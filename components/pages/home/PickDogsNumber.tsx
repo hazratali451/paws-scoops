@@ -4,8 +4,8 @@ import SelectStep, { OptionItem } from "@/components/common/SelectStep";
 import React from "react";
 import dog1 from "../../../public/assets/icons/single-dog.svg";
 import dogs2 from "../../../public/assets/icons/2-dogs.svg";
+import dogs3 from "../../../public/assets/icons/3-dogs.png";
 import dogs4 from "../../../public/assets/icons/4-dogs.svg";
-import dogs6 from "../../../public/assets/icons/6-dogs.svg";
 import Image from "next/image";
 
 export default function PickDogsNumber({
@@ -24,19 +24,19 @@ export default function PickDogsNumber({
       icon: <Image className="w-full" alt="" priority src={dog1} />,
     },
     {
-      id: "2-3",
-      label: "2-3 Dogs",
+      id: "2",
+      label: "2 Dogs",
       icon: <Image className="w-full" alt="" priority src={dogs2} />,
     },
     {
-      id: "4-5",
-      label: "4-5 Dogs",
-      icon: <Image className="w-full" alt="" priority src={dogs4} />,
+      id: "3",
+      label: "3 Dogs",
+      icon: <Image className="w-full" alt="" priority src={dogs3} />,
     },
     {
-      id: "6+",
-      label: "6+ Dogs",
-      icon: <Image className="w-full" alt="" priority src={dogs6} />,
+      id: "4+",
+      label: "4+ Dogs",
+      icon: <Image className="w-full" alt="" priority src={dogs4} />,
     },
   ];
 

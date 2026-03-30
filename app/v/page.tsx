@@ -10,7 +10,7 @@ export default function vPage() {
         <div className="container max-w-230.5! flex flex-col gap-3">
           <div className="flex flex-col gap-1">
             <h1 className="text-2xl leading-[120%] text-dark font-bold">
-              Thanks for requesting a quote Md!
+              Thanks for requesting a quote Rahmat!
             </h1>
             <p className="text-[#8F7C70] text-base leading-[150%] ">
               One of our team members will be reaching out shortly!
@@ -26,10 +26,14 @@ export default function vPage() {
             </span>
           </div>
 
-          <p className="w-full py-3 px-3.5 border-dashed border-[#E7DFDA] border text-[15px] rounded-lg bg-[#F5F2EF] text-[#2C1C11] leading-[150%]">
+          {/* <p className="w-full py-3 px-3.5 border-dashed border-[#E7DFDA] border text-[15px] rounded-lg bg-[#F5F2EF] text-[#2C1C11] leading-[150%]">
             If pricing isn’t showing, text{" "}
-            <span className="font-bold underline">407-205-2792</span> and we’ll
-            send pricing immediately. Sorry for the inconvenience.
+            <span className="font-bold underline">(708) 500-5016</span> and
+            we’ll send pricing immediately. Sorry for the inconvenience.
+          </p> */}
+          <p className="w-full py-3 px-3.5 border-dashed border-[#E7DFDA] border text-[15px] rounded-lg bg-[#F5F2EF] text-[#2C1C11] leading-[150%]">
+            Thank you for your interest you will receive a quote texted from{" "}
+            <span className="font-bold underline">(708) 500-5016</span> shortly.
           </p>
 
           <CheckoutSummary />
