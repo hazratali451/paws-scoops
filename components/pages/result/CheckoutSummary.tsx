@@ -1,25 +1,20 @@
 import React from "react";
+
 interface SummaryItem {
   label: string;
   value: string;
 }
-const orderSummary: SummaryItem[] = [
-  { label: "Service frequency", value: "" },
-  { label: "Package tier", value: "" },
-  { label: "Dog count", value: "1 Dog" },
-  { label: "Backyard surface", value: "Rocks" },
-  { label: "Free cleaning", value: "—" },
-  { label: "Selected services", value: "Front Lawn Dog Deterrent" },
-];
 
-const contactDetails: SummaryItem[] = [
-  { label: "Name", value: "Rahmat Ali" },
-  { label: "Email", value: "" },
-  { label: "Phone", value: "55665898989" },
-  { label: "Address", value: "" },
-];
-interface SummaryRowProps extends SummaryItem {
-  isLast?: boolean;
+interface CheckoutSummaryProps {
+  dogs: string;
+  frequency: string;
+  surface: string;
+  services: string;
+  freeCleaning: string;
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
 }
 
 interface SummaryRowProps extends SummaryItem {
@@ -37,7 +32,21 @@ const SummaryRow: React.FC<SummaryRowProps> = ({ label, value, isLast }) => (
   </div>
 );
 
-const CheckoutSummary: React.FC = () => {
+const CheckoutSummary: React.FC<CheckoutSummaryProps> = ({ dogs, frequency, surface, services, freeCleaning, name, email, phone, address }) => {
+  const orderSummary: SummaryItem[] = [
+    { label: "Service frequency", value: frequency },
+    { label: "Dog count", value: dogs },
+    { label: "Backyard surface", value: surface },
+    { label: "Free cleaning", value: freeCleaning || "—" },
+    { label: "Selected services", value: services },
+  ];
+
+  const contactDetails: SummaryItem[] = [
+    { label: "Name", value: name },
+    { label: "Email", value: email },
+    { label: "Phone", value: phone },
+    { label: "Address", value: address },
+  ];
   return (
     <>
       {/* Order Summary Card */}

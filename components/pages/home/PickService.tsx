@@ -1,17 +1,34 @@
 import StepLayout from "@/components/common/StepLayout";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DoYouWantFreeClean from "./DoYouWantFreeClean";
 import Services from "./Services";
 
 interface PickServiceProps {
   onNext?: () => void;
   onBack?: () => void;
-  onChange?: (value: string) => void;
+  onServicesChange?: (value: string[]) => void;
+  onFreeCleaningChange?: (value: string) => void;
 }
 
-export default function PickService({ onNext, onBack }: PickServiceProps) {
+export default function PickService({ onNext, onBack, onServicesChange, onFreeCleaningChange }: PickServiceProps) {
   const [selectedService, setSelectedService] = useState<string[]>([]);
   const [freeCleaning, setFreeCleaning] = useState<string>("");
+
+  const serviceLabels: Record<string, string> = {
+    "1": "Poop scoop and haul away",
+    "2": "Backyard Sanitizing",
+    "3": "Backyard Deodorization",
+    "4": "Front Lawn Dog Deterrent",
+    "5": "Magic Bucket",
+  };
+
+  useEffect(() => {
+    onServicesChange?.(selectedService.map((id) => serviceLabels[id] || id));
+  }, [selectedService]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    onFreeCleaningChange?.(freeCleaning === "1" ? "Yes" : freeCleaning === "2" ? "No" : "");
+  }, [freeCleaning]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ✅ condition: at least one must be selected
   const isDisabled = selectedService.length === 0 && !freeCleaning;

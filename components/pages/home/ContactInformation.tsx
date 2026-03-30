@@ -6,30 +6,48 @@ import StepLayout from "@/components/common/StepLayout";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
+interface FormData {
+  dogs: string;
+  frequency: string;
+  surface: string;
+  services: string[];
+  freeCleaning: string;
+}
+
 interface ContactProps {
   onNext?: () => void;
   onBack?: () => void;
-  onChange?: (value: string) => void;
+  formData?: FormData;
 }
 
-export default function ContactInformation({ onNext, onBack }: ContactProps) {
+export default function ContactInformation({ onNext, onBack, formData }: ContactProps) {
   const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [hearFrom, setHearFrom] = useState("");
-  const [loading, setLoading] = useState(false); // disable if required fields empty
+  const [loading, setLoading] = useState(false);
   const isDisabled = !name || !email || !phone || !address || !hearFrom;
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (isDisabled || loading) return;
     setLoading(true);
-    // optional callback
     if (onNext) onNext();
     setTimeout(() => {
       setLoading(false);
-      router.push("/v");
+      const params = new URLSearchParams({
+        name,
+        email,
+        phone,
+        address,
+        dogs: formData?.dogs || "",
+        frequency: formData?.frequency || "",
+        surface: formData?.surface || "",
+        services: formData?.services?.join(", ") || "",
+        freeCleaning: formData?.freeCleaning || "",
+      });
+      router.push(`/v?${params.toString()}`);
     }, 3000);
   };
 
