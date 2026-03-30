@@ -53,8 +53,14 @@ export default function Home() {
               </div>
               <div className={`${step === 5 ? "block" : "hidden"}`}>
                 <ContactInformation
-                  onBack={() => setStep(4)}
-                  formData={{ dogs, frequency, surface, services, freeCleaning }}
+                  onBack={() => setStep(1)}
+                  formData={{
+                    dogs,
+                    frequency,
+                    surface,
+                    services,
+                    freeCleaning,
+                  }}
                 />
               </div>
             </div>
