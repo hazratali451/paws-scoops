@@ -50,10 +50,9 @@ function VPageContent() {
             address={searchParams.get("address") || ""}
           />
           <p className="text-[#8F7C70] text-sm leading-[150%]">
-            The prices shown are instant estimates meant to give you a quick
-            idea of what to expect. We&apos;ll still reach out to confirm your
-            selections, verify details, and finalize your booking before
-            anything is set in stone.
+            We&apos;ll reach out shortly to confirm your selections, discuss
+            pricing, and finalize your booking before anything is set in
+            stone.
           </p>
         </div>
       </section>

@@ -29,26 +29,47 @@ export default function ContactInformation({ onNext, onBack, formData }: Contact
   const [hearFrom, setHearFrom] = useState("");
   const [loading, setLoading] = useState(false);
   const isDisabled = !name || !email || !phone || !address || !hearFrom;
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (isDisabled || loading) return;
     setLoading(true);
     if (onNext) onNext();
-    setTimeout(() => {
-      setLoading(false);
-      const params = new URLSearchParams({
-        name,
-        email,
-        phone,
-        address,
-        dogs: formData?.dogs || "",
-        frequency: formData?.frequency || "",
-        surface: formData?.surface || "",
-        services: formData?.services?.join(", ") || "",
-        freeCleaning: formData?.freeCleaning || "",
+
+    const payload = {
+      name,
+      email,
+      phone,
+      address,
+      hearFrom,
+      dogs: formData?.dogs || "",
+      frequency: formData?.frequency || "",
+      surface: formData?.surface || "",
+      services: formData?.services || [],
+      freeCleaning: formData?.freeCleaning || "",
+    };
+
+    try {
+      await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
-      router.push(`/v?${params.toString()}`);
-    }, 3000);
+    } catch (err) {
+      console.error("Lead submission failed:", err);
+    }
+
+    const params = new URLSearchParams({
+      name,
+      email,
+      phone,
+      address,
+      dogs: formData?.dogs || "",
+      frequency: formData?.frequency || "",
+      surface: formData?.surface || "",
+      services: formData?.services?.join(", ") || "",
+      freeCleaning: formData?.freeCleaning || "",
+    });
+    router.push(`/v?${params.toString()}`);
   };
 
   return (
