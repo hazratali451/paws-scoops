@@ -13,7 +13,7 @@ export default function Home() {
 
   const setStep = useCallback((s: number) => {
     _setStep(s);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    setTimeout(() => window.scrollTo({ top: 0 }), 0);
   }, []);
   const [dogs, setDogs] = useState("");
   const [frequency, setFrequency] = useState("");

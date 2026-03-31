@@ -59,35 +59,31 @@ export default function PickService({
               : "border-[#E7DFDA] hover:border-primary-color hover:shadow-[0_18px_40px_-26px_#429EBC99]"
           }`}
         >
-          <div className="bg-white/95 flex gap-3.5 items-center w-full h-full rounded-[11px] p-3">
-            <div className="flex-1 flex sm:items-center max-sm:items-end max-sm:flex-col gap-3.5">
-              <div className="flex-1 w-full flex items-center gap-3">
-                <div
-                  className="border border-[#E7DFDA] bg-white rounded-lg size-8 flex justify-center items-center overflow-hidden p-0.5"
-                  style={{
-                    boxShadow: "0 4px 14px -10px rgba(0, 0, 0, 0.25)",
-                  }}
-                >
-                  <Image
-                    className="w-full"
-                    alt=""
-                    priority
-                    src={deodorization}
-                  />
-                </div>
-                <div className="flex-1 flex flex-col items-start gap-1">
-                  <span className="text-[15px] font-semibold leading-[150%]">
-                    Deodorizing & Disinfecting
-                  </span>
-                  <p className="text-sm leading-[135%] text-[#8F7C70] text-start">
-                    Neutralize odors and sanitize the serviced area.
-                  </p>
-                </div>
-              </div>
-              <div className="flex flex-col items-start gap-px">
-                <Switch checked={deodorizingSelected} />
-                <span className="text-[15px] font-bold text-dark">Add</span>
-              </div>
+          <div className="bg-white/95 flex items-center w-full h-full rounded-[11px] p-3 gap-3">
+            <div
+              className="border border-[#E7DFDA] bg-white rounded-lg size-8 shrink-0 flex justify-center items-center overflow-hidden p-0.5"
+              style={{
+                boxShadow: "0 4px 14px -10px rgba(0, 0, 0, 0.25)",
+              }}
+            >
+              <Image
+                className="w-full"
+                alt=""
+                priority
+                src={deodorization}
+              />
+            </div>
+            <div className="flex-1 flex flex-col items-start gap-1 min-w-0">
+              <span className="text-[15px] font-semibold leading-[150%]">
+                Deodorizing & Disinfecting
+              </span>
+              <p className="text-sm leading-[135%] text-[#8F7C70] text-start">
+                Neutralize odors and sanitize the serviced area.
+              </p>
+            </div>
+            <div className="flex flex-col items-center gap-px shrink-0">
+              <Switch checked={deodorizingSelected} />
+              <span className="text-[15px] font-bold text-dark">Add</span>
             </div>
           </div>
         </button>
