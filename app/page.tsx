@@ -6,10 +6,15 @@ import ContactInformation from "@/components/pages/home/ContactInformation";
 import PickDogsNumber from "@/components/pages/home/PickDogsNumber";
 import PickService from "@/components/pages/home/PickService";
 import SelectVisitingTime from "@/components/pages/home/SelectVisitingTime";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 export default function Home() {
-  const [step, setStep] = useState(1);
+  const [step, _setStep] = useState(1);
+
+  const setStep = useCallback((s: number) => {
+    _setStep(s);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   const [dogs, setDogs] = useState("");
   const [frequency, setFrequency] = useState("");
   const [surface, setSurface] = useState("");
