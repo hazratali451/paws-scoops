@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { verifyPassword, createSession } from "@/lib/admin/auth";
 import { checkRateLimit } from "@/lib/admin/rate-limit";
+import { log } from "@/lib/logger";
 
 export async function POST(request: Request) {
   try {
@@ -8,6 +9,7 @@ export async function POST(request: Request) {
     const { allowed, retryAfter } = checkRateLimit(ip);
 
     if (!allowed) {
+      log.auth.warn(`Rate limited login attempt from IP: ${ip}, retry after ${retryAfter}s`);
       return NextResponse.json(
         { error: `Too many attempts. Try again in ${retryAfter}s` },
         { status: 429 }
@@ -17,12 +19,15 @@ export async function POST(request: Request) {
     const { password } = await request.json();
 
     if (!password || !(await verifyPassword(password))) {
+      log.auth.warn(`Failed login attempt from IP: ${ip}`);
       return NextResponse.json({ error: "Invalid password" }, { status: 401 });
     }
 
     await createSession();
+    log.auth.info(`Admin logged in from IP: ${ip}`);
     return NextResponse.json({ success: true });
-  } catch {
+  } catch (error) {
+    log.auth.error("Login failed", error instanceof Error ? error.message : error);
     return NextResponse.json({ error: "Login failed" }, { status: 500 });
   }
 }

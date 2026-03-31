@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { isAuthenticated, changePassword, destroySession } from "@/lib/admin/auth";
+import { log } from "@/lib/logger";
 
 export async function POST(request: Request) {
   const authed = await isAuthenticated();
@@ -20,12 +21,15 @@ export async function POST(request: Request) {
 
     const success = await changePassword(currentPassword, newPassword);
     if (!success) {
+      log.auth.warn("Password change failed — incorrect current password");
       return NextResponse.json({ error: "Current password is incorrect" }, { status: 401 });
     }
 
     await destroySession();
+    log.auth.info("Admin password changed successfully");
     return NextResponse.json({ success: true });
-  } catch {
+  } catch (error) {
+    log.auth.error("Password change failed", error instanceof Error ? error.message : error);
     return NextResponse.json({ error: "Failed to change password" }, { status: 500 });
   }
 }

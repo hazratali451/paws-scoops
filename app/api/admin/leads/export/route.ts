@@ -3,6 +3,7 @@ import { isAuthenticated } from "@/lib/admin/auth";
 import connectDB from "@/lib/db";
 import Lead from "@/lib/models/Lead";
 import * as XLSX from "xlsx";
+import { log } from "@/lib/logger";
 
 const hearFromLabels: Record<string, string> = {
   fb: "Facebook",
@@ -37,6 +38,8 @@ export async function GET(request: NextRequest) {
     }
 
     const leads = await Lead.find(filter).sort({ createdAt: -1 }).lean();
+
+    log.admin.info(`Exporting ${leads.length} leads as ${format}`, { status, search });
 
     const rows = leads.map((lead) => ({
       Name: lead.name,
@@ -77,7 +80,7 @@ export async function GET(request: NextRequest) {
       },
     });
   } catch (error) {
-    console.error("Export failed:", error);
+    log.admin.error("Export failed", error instanceof Error ? error.message : error);
     return NextResponse.json({ error: "Export failed" }, { status: 500 });
   }
 }

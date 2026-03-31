@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { isAuthenticated } from "@/lib/admin/auth";
 import connectDB from "@/lib/db";
 import Lead from "@/lib/models/Lead";
+import { log } from "@/lib/logger";
 
 export async function GET(
   _request: NextRequest,
@@ -23,7 +24,7 @@ export async function GET(
 
     return NextResponse.json(lead);
   } catch (error) {
-    console.error("Failed to fetch lead:", error);
+    log.admin.error("Failed to fetch lead", error instanceof Error ? error.message : error);
     return NextResponse.json({ error: "Failed to fetch lead" }, { status: 500 });
   }
 }
@@ -57,9 +58,10 @@ export async function PATCH(
       return NextResponse.json({ error: "Lead not found" }, { status: 404 });
     }
 
+    log.admin.info(`Lead ${id} updated`, sanitized);
     return NextResponse.json(lead);
   } catch (error) {
-    console.error("Failed to update lead:", error);
+    log.admin.error("Failed to update lead", error instanceof Error ? error.message : error);
     return NextResponse.json({ error: "Failed to update lead" }, { status: 500 });
   }
 }
@@ -82,9 +84,10 @@ export async function DELETE(
       return NextResponse.json({ error: "Lead not found" }, { status: 404 });
     }
 
+    log.admin.info(`Lead ${id} deleted`, { name: lead.name, email: lead.email });
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Failed to delete lead:", error);
+    log.admin.error("Failed to delete lead", error instanceof Error ? error.message : error);
     return NextResponse.json({ error: "Failed to delete lead" }, { status: 500 });
   }
 }

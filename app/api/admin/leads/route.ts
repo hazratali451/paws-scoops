@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { isAuthenticated } from "@/lib/admin/auth";
 import connectDB from "@/lib/db";
 import Lead from "@/lib/models/Lead";
+import { log } from "@/lib/logger";
 
 export async function GET(request: NextRequest) {
   const authed = await isAuthenticated();
@@ -48,7 +49,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({ leads, total, page, totalPages });
   } catch (error) {
-    console.error("Failed to fetch leads:", error);
+    log.admin.error("Failed to fetch leads", error instanceof Error ? error.message : error);
     return NextResponse.json({ error: "Failed to fetch leads" }, { status: 500 });
   }
 }

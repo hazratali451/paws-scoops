@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { isAuthenticated } from "@/lib/admin/auth";
 import connectDB from "@/lib/db";
 import { getAdmin } from "@/lib/models/Admin";
+import { log } from "@/lib/logger";
 
 export async function GET() {
   const authed = await isAuthenticated();
@@ -37,8 +38,10 @@ export async function POST(request: Request) {
     admin.notificationEmails.push(email);
     await admin.save();
 
+    log.admin.info(`Notification email added: ${email}`, { total: admin.notificationEmails.length });
     return NextResponse.json({ emails: admin.notificationEmails });
-  } catch {
+  } catch (error) {
+    log.admin.error("Failed to add notification email", error instanceof Error ? error.message : error);
     return NextResponse.json({ error: "Failed to add email" }, { status: 500 });
   }
 }
@@ -60,8 +63,10 @@ export async function DELETE(request: Request) {
     );
     await admin.save();
 
+    log.admin.info(`Notification email removed: ${email}`, { total: admin.notificationEmails.length });
     return NextResponse.json({ emails: admin.notificationEmails });
-  } catch {
+  } catch (error) {
+    log.admin.error("Failed to remove notification email", error instanceof Error ? error.message : error);
     return NextResponse.json({ error: "Failed to remove email" }, { status: 500 });
   }
 }
