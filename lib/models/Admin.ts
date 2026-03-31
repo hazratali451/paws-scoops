@@ -3,6 +3,7 @@ import { createHash } from "crypto";
 
 export interface IAdmin extends Document {
   passwordHash: string;
+  notificationEmails: string[];
   createdAt: Date;
   updatedAt: Date;
 }
@@ -10,6 +11,7 @@ export interface IAdmin extends Document {
 const AdminSchema = new Schema<IAdmin>(
   {
     passwordHash: { type: String, required: true },
+    notificationEmails: { type: [String], default: [] },
   },
   { timestamps: true }
 );
@@ -29,7 +31,10 @@ export async function getAdmin(): Promise<IAdmin> {
   let admin = await Admin.findOne();
   if (!admin) {
     const seedPassword = process.env.ADMIN_PASSWORD || "admin";
-    admin = await Admin.create({ passwordHash: hashPassword(seedPassword) });
+    admin = await Admin.create({
+      passwordHash: hashPassword(seedPassword),
+      notificationEmails: [],
+    });
   }
   return admin;
 }

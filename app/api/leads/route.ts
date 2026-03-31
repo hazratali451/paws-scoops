@@ -29,15 +29,20 @@ export async function POST(request: Request) {
       status: "New",
     });
 
-    // Send emails (best-effort — don't block response on failure)
-    try {
-      await Promise.all([
-        sendConfirmationEmail({ name, email, phone, address, dogs, frequency, surface, services: services || [], freeCleaning: freeCleaning || "", hearFrom: hearFrom || "" }),
-        sendAdminNotification({ name, email, phone, address, dogs, frequency, surface, services: services || [], freeCleaning: freeCleaning || "", hearFrom: hearFrom || "" }),
-      ]);
-    } catch (emailError) {
-      console.error("Email sending failed:", emailError);
-    }
+    // Fire emails in background — don't await, don't block the response
+    const emailData = {
+      name, email, phone, address, dogs, frequency, surface,
+      services: services || [],
+      freeCleaning: freeCleaning || "",
+      hearFrom: hearFrom || "",
+    };
+
+    sendConfirmationEmail(emailData).catch((err) =>
+      console.error("Customer email failed:", err)
+    );
+    sendAdminNotification(emailData).catch((err) =>
+      console.error("Admin notification failed:", err)
+    );
 
     return NextResponse.json({ success: true, leadId: lead._id }, { status: 201 });
   } catch (error) {
