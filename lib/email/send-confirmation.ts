@@ -22,7 +22,7 @@ interface LeadEmailData {
   frequency: string;
   surface: string;
   services: string[];
-  freeCleaning: string;
+  startTime: string;
   hearFrom: string;
 }
 

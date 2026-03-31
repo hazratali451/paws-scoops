@@ -11,7 +11,7 @@ interface FormData {
   frequency: string;
   surface: string;
   services: string[];
-  freeCleaning: string;
+  startTime: string;
 }
 
 interface ContactProps {
@@ -45,7 +45,7 @@ export default function ContactInformation({ onNext, onBack, formData }: Contact
       frequency: formData?.frequency || "",
       surface: formData?.surface || "",
       services: formData?.services || [],
-      freeCleaning: formData?.freeCleaning || "",
+      startTime: formData?.startTime || "",
     };
 
     try {
@@ -67,7 +67,7 @@ export default function ContactInformation({ onNext, onBack, formData }: Contact
       frequency: formData?.frequency || "",
       surface: formData?.surface || "",
       services: formData?.services?.join(", ") || "",
-      freeCleaning: formData?.freeCleaning || "",
+      startTime: formData?.startTime || "",
     });
     router.push(`/v?${params.toString()}`);
   };

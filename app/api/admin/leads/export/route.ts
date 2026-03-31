@@ -50,7 +50,7 @@ export async function GET(request: NextRequest) {
       Frequency: lead.frequency,
       Surface: lead.surface,
       Services: lead.services?.join(", ") || "",
-      "Free Cleaning": lead.freeCleaning || "",
+      "Start Time": lead.startTime || "",
       "Heard From": hearFromLabels[lead.hearFrom] || lead.hearFrom || "",
       Status: lead.status,
       Notes: lead.notes || "",

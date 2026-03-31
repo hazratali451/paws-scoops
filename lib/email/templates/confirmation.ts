@@ -4,7 +4,7 @@ interface ConfirmationData {
   frequency: string;
   surface: string;
   services: string[];
-  freeCleaning: string;
+  startTime: string;
 }
 
 export function buildConfirmationHTML(data: ConfirmationData): string {
@@ -78,10 +78,10 @@ export function buildConfirmationHTML(data: ConfirmationData): string {
                 </tr>
                 <tr>
                   <td style="padding: 16px 20px;">
-                    <span style="color: #8F7C70; font-size: 14px;">Free Cleaning</span>
+                    <span style="color: #8F7C70; font-size: 14px;">Start Time</span>
                   </td>
                   <td style="padding: 16px 20px; text-align: right;">
-                    <span style="color: #2c1c11; font-size: 14px; font-weight: 700;">${data.freeCleaning || "—"}</span>
+                    <span style="color: #2c1c11; font-size: 14px; font-weight: 700;">${data.startTime || "—"}</span>
                   </td>
                 </tr>
               </table>

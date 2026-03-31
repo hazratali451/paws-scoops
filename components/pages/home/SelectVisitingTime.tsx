@@ -2,7 +2,6 @@
 
 import SelectStep, { OptionItem } from "@/components/common/SelectStep";
 import React from "react";
-import twiceWeekly from "../../../public/assets/icons/twice-weekly.svg";
 import weekly from "../../../public/assets/icons/weekly.svg";
 import biWeekly from "../../../public/assets/icons/bi-weekly.svg";
 import monthly from "../../../public/assets/icons/monthly.svg";
@@ -19,11 +18,6 @@ export default function SelectVisitingTime({
   onChange?: (value: string) => void;
 }) {
   const options: OptionItem[] = [
-    {
-      id: "1",
-      label: "Twice Weekly",
-      icon: <Image className="w-full" alt="" priority src={twiceWeekly} />,
-    },
     {
       id: "2",
       label: "Weekly",

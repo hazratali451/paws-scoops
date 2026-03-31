@@ -43,7 +43,7 @@ function VPageContent() {
             frequency={searchParams.get("frequency") || ""}
             surface={searchParams.get("surface") || ""}
             services={searchParams.get("services") || ""}
-            freeCleaning={searchParams.get("freeCleaning") || ""}
+            startTime={searchParams.get("startTime") || ""}
             name={name}
             email={searchParams.get("email") || ""}
             phone={searchParams.get("phone") || ""}

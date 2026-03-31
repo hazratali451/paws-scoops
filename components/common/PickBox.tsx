@@ -30,14 +30,16 @@ export default function PickBox({
         }`}
     >
       <div className="bg-white/95 flex flex-col gap-3 items-center w-full h-full rounded-[11px] p-4">
-        <div
-          className={`border border-[#E7DFDA] bg-white rounded-lg size-14 flex justify-center items-center overflow-hidden ${
-            item.type === "img" ? "" : "p-1.5"
-          }`}
-          style={{ boxShadow: "0 4px 14px -10px rgba(0, 0, 0, 0.25)" }}
-        >
-          {item.icon}
-        </div>
+        {item.icon && (
+          <div
+            className={`border border-[#E7DFDA] bg-white rounded-lg size-14 flex justify-center items-center overflow-hidden ${
+              item.type === "img" ? "" : "p-1.5"
+            }`}
+            style={{ boxShadow: "0 4px 14px -10px rgba(0, 0, 0, 0.25)" }}
+          >
+            {item.icon}
+          </div>
+        )}
 
         <span className="text-[15px] font-semibold leading-[150%]">
           {item.label}

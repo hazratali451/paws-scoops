@@ -1,59 +1,124 @@
 import StepLayout from "@/components/common/StepLayout";
+import SmallHeading from "@/components/common/SmallHeading";
+import PickBox, { PickBoxItem } from "@/components/common/PickBox";
+import Switch from "@/components/common/Switch";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import DoYouWantFreeClean from "./DoYouWantFreeClean";
-import Services from "./Services";
+import deodorization from "../../../public/assets/icons/deodorization.svg";
 
 interface PickServiceProps {
   onNext?: () => void;
   onBack?: () => void;
   onServicesChange?: (value: string[]) => void;
-  onFreeCleaningChange?: (value: string) => void;
+  onStartTimeChange?: (value: string) => void;
 }
 
-export default function PickService({ onNext, onBack, onServicesChange, onFreeCleaningChange }: PickServiceProps) {
-  const [selectedService, setSelectedService] = useState<string[]>([]);
-  const [freeCleaning, setFreeCleaning] = useState<string>("");
+const startOptions = [
+  { id: "1", label: "ASAP" },
+  { id: "2", label: "Next Week" },
+  { id: "3", label: "Just Exploring" },
+];
 
-  const serviceLabels: Record<string, string> = {
-    "1": "Poop scoop and haul away",
-    "2": "Backyard Sanitizing",
-    "3": "Backyard Deodorization",
-    "4": "Front Lawn Dog Deterrent",
-    "5": "Magic Bucket",
-  };
+export default function PickService({
+  onNext,
+  onBack,
+  onServicesChange,
+  onStartTimeChange,
+}: PickServiceProps) {
+  const [deodorizingSelected, setDeodorizingSelected] = useState(false);
+  const [startTime, setStartTime] = useState("");
 
   useEffect(() => {
-    onServicesChange?.(selectedService.map((id) => serviceLabels[id] || id));
-  }, [selectedService]); // eslint-disable-line react-hooks/exhaustive-deps
+    onServicesChange?.(
+      deodorizingSelected ? ["Deodorizing & Disinfecting"] : []
+    );
+  }, [deodorizingSelected]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    onFreeCleaningChange?.(freeCleaning === "1" ? "Yes" : freeCleaning === "2" ? "No" : "");
-  }, [freeCleaning]); // eslint-disable-line react-hooks/exhaustive-deps
+    const label = startOptions.find((o) => o.id === startTime)?.label || "";
+    onStartTimeChange?.(label);
+  }, [startTime]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // ✅ condition: at least one must be selected
-  const isDisabled = selectedService.length === 0 && !freeCleaning;
+  const isDisabled = !startTime;
 
   return (
     <StepLayout
-      title="What services do you need? (Select all that apply)"
-      description="Pick your preferred services."
+      title="Additional services & timing"
+      description="Choose any add-ons and when you'd like to start."
       step={4}
     >
-      <Services
-        setSelectedService={setSelectedService}
-        selectedService={selectedService}
-      />
+      {/* Deodorizing & Disinfecting toggle */}
+      <div className="flex flex-col gap-3">
+        <SmallHeading>Services</SmallHeading>
+        <button
+          type="button"
+          onClick={() => setDeodorizingSelected((prev) => !prev)}
+          className={`border rounded-xl transition-all ease-linear duration-300 w-full ${
+            deodorizingSelected
+              ? "border-primary-color shadow-[0_18px_40px_-26px_#429EBC99] bg-[linear-gradient(180deg,#429EBC99_0%,#F4F1EE_100%)]"
+              : "border-[#E7DFDA] hover:border-primary-color hover:shadow-[0_18px_40px_-26px_#429EBC99]"
+          }`}
+        >
+          <div className="bg-white/95 flex gap-3.5 items-center w-full h-full rounded-[11px] p-3">
+            <div className="flex-1 flex sm:items-center max-sm:items-end max-sm:flex-col gap-3.5">
+              <div className="flex-1 w-full flex items-center gap-3">
+                <div
+                  className="border border-[#E7DFDA] bg-white rounded-lg size-8 flex justify-center items-center overflow-hidden p-0.5"
+                  style={{
+                    boxShadow: "0 4px 14px -10px rgba(0, 0, 0, 0.25)",
+                  }}
+                >
+                  <Image
+                    className="w-full"
+                    alt=""
+                    priority
+                    src={deodorization}
+                  />
+                </div>
+                <div className="flex-1 flex flex-col items-start gap-1">
+                  <span className="text-[15px] font-semibold leading-[150%]">
+                    Deodorizing & Disinfecting
+                  </span>
+                  <p className="text-sm leading-[135%] text-[#8F7C70] text-start">
+                    Neutralize odors and sanitize the serviced area.
+                  </p>
+                </div>
+              </div>
+              <div className="flex flex-col items-start gap-px">
+                <Switch checked={deodorizingSelected} />
+                <span className="text-[15px] font-bold text-dark">Add</span>
+              </div>
+            </div>
+          </div>
+        </button>
+      </div>
 
-      <DoYouWantFreeClean
-        freeCleaning={freeCleaning}
-        setFreeCleaning={setFreeCleaning}
-      />
+      {/* When would you like to get started? */}
+      <div className="flex flex-col gap-3 mt-6">
+        <SmallHeading>When would you like to get started?</SmallHeading>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-1">
+          {startOptions.map((item) => (
+            <PickBox
+              key={item.id}
+              isActive={startTime === item.id}
+              item={
+                {
+                  id: item.id,
+                  label: item.label,
+                  icon: null,
+                } as unknown as PickBoxItem
+              }
+              handleSelect={() => setStartTime(item.id)}
+            />
+          ))}
+        </div>
+      </div>
 
       {/* Actions */}
       <div className="flex gap-2 mt-8">
         <button
           onClick={onBack}
-          className="flex-1 py-3.5 font-semibold text-sm text-dark rounded-[0.65rem] border border-[#E7DFDA] bg-linear-to-t from-[#FCFAF8] to-[#F5F2EF]"
+          className="flex-1 py-3.5 font-semibold text-sm text-dark rounded-[0.65rem] border border-[#E7DFDA] bg-linear-to-t from-[#FCFAF8] to-[#F5F2EF] cursor-pointer"
         >
           Back
         </button>
@@ -61,8 +126,7 @@ export default function PickService({ onNext, onBack, onServicesChange, onFreeCl
         <button
           onClick={onNext}
           disabled={isDisabled}
-          className={`flex-1 py-3.5 font-semibold text-sm rounded-[0.65rem] text-white border border-primary-color
-          ${
+          className={`flex-1 py-3.5 font-semibold text-sm rounded-[0.65rem] text-white border border-primary-color ${
             isDisabled
               ? "bg-[#429EBC]/50 cursor-not-allowed! opacity-60"
               : "bg-[#429EBC]/85 cursor-pointer"

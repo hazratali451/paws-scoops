@@ -8,7 +8,7 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    const { name, email, phone, address, dogs, frequency, surface, services, freeCleaning, hearFrom } = body;
+    const { name, email, phone, address, dogs, frequency, surface, services, startTime, hearFrom } = body;
 
     if (!name || !email || !phone || !address || !dogs || !frequency || !surface) {
       log.leads.warn("Lead submission missing required fields", { name, email, dogs, frequency, surface });
@@ -28,7 +28,7 @@ export async function POST(request: Request) {
       frequency,
       surface,
       services: services || [],
-      freeCleaning: freeCleaning || "",
+      startTime: startTime || "",
       hearFrom: hearFrom || "",
       status: "New",
     });
@@ -39,7 +39,7 @@ export async function POST(request: Request) {
     const emailData = {
       name, email, phone, address, dogs, frequency, surface,
       services: services || [],
-      freeCleaning: freeCleaning || "",
+      startTime: startTime || "",
       hearFrom: hearFrom || "",
     };
 

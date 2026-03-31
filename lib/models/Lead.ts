@@ -8,7 +8,7 @@ export interface ILead extends Document {
   frequency: string;
   surface: string;
   services: string[];
-  freeCleaning: string;
+  startTime: string;
   name: string;
   email: string;
   phone: string;
@@ -26,7 +26,7 @@ const LeadSchema = new Schema<ILead>(
     frequency: { type: String, required: true },
     surface: { type: String, required: true },
     services: { type: [String], default: [] },
-    freeCleaning: { type: String, default: "" },
+    startTime: { type: String, default: "" },
     name: { type: String, required: true },
     email: { type: String, required: true },
     phone: { type: String, required: true },

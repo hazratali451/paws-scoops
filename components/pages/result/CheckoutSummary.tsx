@@ -10,7 +10,7 @@ interface CheckoutSummaryProps {
   frequency: string;
   surface: string;
   services: string;
-  freeCleaning: string;
+  startTime: string;
   name: string;
   email: string;
   phone: string;
@@ -32,13 +32,13 @@ const SummaryRow: React.FC<SummaryRowProps> = ({ label, value, isLast }) => (
   </div>
 );
 
-const CheckoutSummary: React.FC<CheckoutSummaryProps> = ({ dogs, frequency, surface, services, freeCleaning, name, email, phone, address }) => {
+const CheckoutSummary: React.FC<CheckoutSummaryProps> = ({ dogs, frequency, surface, services, startTime, name, email, phone, address }) => {
   const orderSummary: SummaryItem[] = [
     { label: "Service frequency", value: frequency },
     { label: "Dog count", value: dogs },
     { label: "Backyard surface", value: surface },
-    { label: "Free cleaning", value: freeCleaning || "—" },
     { label: "Selected services", value: services },
+    { label: "Start time", value: startTime || "—" },
   ];
 
   const contactDetails: SummaryItem[] = [

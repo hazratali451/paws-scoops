@@ -14,7 +14,7 @@ interface Lead {
   frequency: string;
   surface: string;
   services: string[];
-  freeCleaning: string;
+  startTime: string;
   hearFrom: string;
   status: string;
   notes: string;

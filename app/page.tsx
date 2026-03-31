@@ -14,7 +14,7 @@ export default function Home() {
   const [frequency, setFrequency] = useState("");
   const [surface, setSurface] = useState("");
   const [services, setServices] = useState<string[]>([]);
-  const [freeCleaning, setFreeCleaning] = useState("");
+  const [startTime, setStartTime] = useState("");
 
   return (
     <>
@@ -48,7 +48,7 @@ export default function Home() {
                   onNext={() => setStep(5)}
                   onBack={() => setStep(3)}
                   onServicesChange={(val) => setServices(val)}
-                  onFreeCleaningChange={(val) => setFreeCleaning(val)}
+                  onStartTimeChange={(val) => setStartTime(val)}
                 />
               </div>
               <div className={`${step === 5 ? "block" : "hidden"}`}>
@@ -59,7 +59,7 @@ export default function Home() {
                     frequency,
                     surface,
                     services,
-                    freeCleaning,
+                    startTime,
                   }}
                 />
               </div>

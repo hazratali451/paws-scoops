@@ -7,7 +7,7 @@ interface AdminNotificationData {
   frequency: string;
   surface: string;
   services: string[];
-  freeCleaning: string;
+  startTime: string;
   hearFrom: string;
 }
 
@@ -97,10 +97,10 @@ export function buildAdminNotificationHTML(data: AdminNotificationData): string 
                 </tr>
                 <tr>
                   <td style="padding: 12px 16px; border-bottom: 1px solid #E7DFDA;">
-                    <span style="color: #8F7C70; font-size: 13px;">Free Cleaning</span>
+                    <span style="color: #8F7C70; font-size: 13px;">Start Time</span>
                   </td>
                   <td style="padding: 12px 16px; border-bottom: 1px solid #E7DFDA; text-align: right;">
-                    <span style="color: #2c1c11; font-size: 13px; font-weight: 700;">${data.freeCleaning || "—"}</span>
+                    <span style="color: #2c1c11; font-size: 13px; font-weight: 700;">${data.startTime || "—"}</span>
                   </td>
                 </tr>
                 <tr>

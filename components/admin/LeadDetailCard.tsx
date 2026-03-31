@@ -21,7 +21,7 @@ interface Lead {
   frequency: string;
   surface: string;
   services: string[];
-  freeCleaning: string;
+  startTime: string;
   hearFrom: string;
   status: string;
   notes: string;
@@ -113,7 +113,7 @@ export default function LeadDetailCard({ lead, onUpdate, onDelete }: LeadDetailC
               <InfoRow label="Frequency" value={lead.frequency} />
               <InfoRow label="Surface" value={lead.surface} />
               <InfoRow label="Services" value={lead.services.join(", ")} />
-              <InfoRow label="Free Cleaning" value={lead.freeCleaning} />
+              <InfoRow label="Start Time" value={lead.startTime} />
             </div>
           </div>
         </div>
