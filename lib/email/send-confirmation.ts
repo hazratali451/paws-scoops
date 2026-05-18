@@ -37,16 +37,19 @@ export async function sendConfirmationEmail(data: LeadEmailData) {
   log.email.info(`Sending confirmation email to ${data.email}`);
 
   try {
-    const result = await getResend().emails.send({
+    const { data: result, error } = await getResend().emails.send({
       from: `Paws & Scoops <${fromEmail}>`,
       to: data.email,
       subject: `Thanks for your quote request, ${firstName}!`,
       html: buildConfirmationHTML(data),
     });
-    log.email.info(`Confirmation email sent to ${data.email}`, { id: result.data?.id });
+    if (error) {
+      log.email.error(`Failed to send confirmation email to ${data.email}`, error.message || error);
+      return;
+    }
+    log.email.info(`Confirmation email sent to ${data.email}`, { id: result?.id });
   } catch (err) {
     log.email.error(`Failed to send confirmation email to ${data.email}`, err instanceof Error ? err.message : err);
-    throw err;
   }
 }
 
@@ -68,22 +71,26 @@ export async function sendAdminNotification(data: LeadEmailData) {
 
   log.email.info(`Sending admin notification to ${emails.length} recipient(s): ${emails.join(", ")}`);
 
-  const results = await Promise.allSettled(
-    emails.map((email: string) =>
-      getResend().emails.send({
+  const html = buildAdminNotificationHTML(data);
+  const subject = `New Lead: ${data.name} — ${data.frequency}`;
+
+  try {
+    const { data: result, error } = await getResend().batch.send(
+      emails.map((email: string) => ({
         from: `Paws & Scoops Leads <${fromEmail}>`,
         to: email,
-        subject: `New Lead: ${data.name} — ${data.frequency}`,
-        html: buildAdminNotificationHTML(data),
-      })
-    )
-  );
-
-  results.forEach((result, i) => {
-    if (result.status === "fulfilled") {
-      log.email.info(`Admin notification sent to ${emails[i]}`, { id: result.value.data?.id });
-    } else {
-      log.email.error(`Admin notification failed for ${emails[i]}`, result.reason?.message || result.reason);
+        subject,
+        html,
+      }))
+    );
+    if (error) {
+      log.email.error("Admin notification batch failed", error.message || error);
+      return;
     }
-  });
+    log.email.info(`Admin notification sent to ${emails.length} recipient(s)`, {
+      ids: result?.data?.map((d) => d.id),
+    });
+  } catch (err) {
+    log.email.error("Admin notification threw", err instanceof Error ? err.message : err);
+  }
 }

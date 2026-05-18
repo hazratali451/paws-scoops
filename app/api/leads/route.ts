@@ -35,7 +35,7 @@ export async function POST(request: Request) {
 
     log.leads.info(`Lead saved to database`, { leadId: lead._id, name, email });
 
-    // Fire emails in background — don't await, don't block the response
+    // Await so emails finish before Vercel freezes the serverless function.
     const emailData = {
       name, email, phone, address, dogs, frequency, surface,
       services: services || [],
@@ -43,12 +43,10 @@ export async function POST(request: Request) {
       hearFrom: hearFrom || "",
     };
 
-    sendConfirmationEmail(emailData).catch((err) =>
-      log.email.error(`Customer email failed for ${email}`, err instanceof Error ? err.message : err)
-    );
-    sendAdminNotification(emailData).catch((err) =>
-      log.email.error("Admin notification failed", err instanceof Error ? err.message : err)
-    );
+    await Promise.allSettled([
+      sendConfirmationEmail(emailData),
+      sendAdminNotification(emailData),
+    ]);
 
     return NextResponse.json({ success: true, leadId: lead._id }, { status: 201 });
   } catch (error) {
